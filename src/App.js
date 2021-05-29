@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './components/Home';
+import Catalog from './components/Catalog';
+import Cart from './components/Cart';
 
 function App() {
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch('https://fakestoreapi.com/products');
+      const data = await response.json();
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="main-container">
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/catalog" exact component={Catalog} />
+          <Route path="/cart" exact component={Cart} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
