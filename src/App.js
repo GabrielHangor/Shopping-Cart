@@ -24,7 +24,13 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/catalog" exact component={Catalog} />
+          {products && (
+            <Route
+              path="/catalog"
+              exact
+              render={() => <Catalog products={products} />}
+            />
+          )}
           <Route path="/cart" exact component={Cart} />
         </Switch>
       </div>
