@@ -14,7 +14,6 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: fit-content;
 }
 
 nav {
@@ -67,7 +66,6 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 1rem;
   justify-content: space-between;
 }
 
@@ -82,9 +80,24 @@ aside {
   max-height: 250px;
   margin: auto;
   display: block;
+  cursor: pointer;
 }
 
 .product-card > h4 {
   text-align: center;
   width: 90%;
+}
+
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  align-items: center;
+  row-gap: 1rem;
+  padding-top: 1rem;
+}
+
+.categories-container > li {
+  font-size: 1.2rem;
+  cursor: pointer;
 }

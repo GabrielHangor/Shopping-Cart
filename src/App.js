@@ -7,6 +7,7 @@ import Cart from './components/Cart';
 
 function App() {
   const [products, setProducts] = useState();
+  const [productsInCart, setProductsInCart] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -18,17 +19,26 @@ function App() {
     fetchProducts();
   }, []);
 
+  const addProduct = (id) => {
+    setProductsInCart([
+      ...productsInCart,
+      ...products.filter((product) => product.id === id),
+    ]);
+  };
+
   return (
     <BrowserRouter>
       <div className="main-container">
-        <Header />
+        <Header ammountOfProducts={productsInCart.length} />
         <Switch>
           <Route path="/" exact component={Home} />
           {products && (
             <Route
               path="/catalog"
               exact
-              render={() => <Catalog products={products} />}
+              render={() => (
+                <Catalog products={products} addProduct={addProduct} />
+              )}
             />
           )}
           <Route path="/cart" exact component={Cart} />

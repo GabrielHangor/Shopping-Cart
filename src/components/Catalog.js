@@ -1,25 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Product from './Product';
 
-function Catalog({ products }) {
+function Catalog({ products, addProduct }) {
+  const [newProductsArr, setNewProductsArr] = useState();
+
+  useEffect(() => {
+    setNewProductsArr(products);
+  }, [products]);
+
+  const filterProducts = (event) => {
+    setNewProductsArr(
+      event.target.innerText === 'All'
+        ? products
+        : products.filter(
+            (product) =>
+              product.category === event.target.innerText.toLowerCase()
+          )
+    );
+  };
+
   return (
     <div className="catalog-container">
-      <aside>Catalog</aside>
+      <aside>
+        <h1>Catalog</h1>
+        <ul className="categories-container">
+          <li onClick={filterProducts}>All</li>
+          <li onClick={filterProducts}>Men's clothing</li>
+          <li onClick={filterProducts}>Jewelery</li>
+          <li onClick={filterProducts}>Electronics</li>
+          <li onClick={filterProducts}>Women's clothing</li>
+        </ul>
+      </aside>
       <div className="products-container">
-        {products.map((product) => {
-          const { id, category, description, image, price, title } = product;
-          return (
-            <Product
-              key={id}
-              id={id}
-              category={category}
-              description={description}
-              image={image}
-              price={price}
-              title={title}
-            />
-          );
-        })}
+        {newProductsArr &&
+          newProductsArr.map((product) => {
+            return (
+              <Product
+                key={product.id}
+                product={product}
+                addProduct={addProduct}
+              />
+            );
+          })}
       </div>
     </div>
   );
