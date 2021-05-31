@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Catalog from './components/Catalog';
 import Cart from './components/Cart';
+import uniqid from 'uniqid';
 
 function App() {
   const [products, setProducts] = useState();
@@ -19,11 +20,15 @@ function App() {
     fetchProducts();
   }, []);
 
+  // Setting up unique ids for further usage before adding items to cart
   const addProduct = (id) => {
-    setProductsInCart([
-      ...productsInCart,
-      ...products.filter((product) => product.id === id),
-    ]);
+    const productWithNewID = products
+      .filter((product) => product.id === id)
+      .map((product) => {
+        return { ...product, id: uniqid() };
+      });
+
+    setProductsInCart([...productsInCart, ...productWithNewID]);
   };
 
   return (
@@ -41,7 +46,11 @@ function App() {
               )}
             />
           )}
-          <Route path="/cart" exact component={Cart} />
+          <Route
+            path="/cart"
+            exact
+            render={() => <Cart productsInCart={productsInCart} />}
+          />
         </Switch>
       </div>
     </BrowserRouter>
