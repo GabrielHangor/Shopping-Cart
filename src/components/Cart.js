@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Cart({ productsInCart }) {
+function Cart({ productsInCart, deleteProduct }) {
   return (
     <div className="cart-container">
       <h1>MY SHOPPING CART</h1>
@@ -12,7 +12,9 @@ function Cart({ productsInCart }) {
               <img src={image} alt={title} />
               <h4>{title}</h4>
               <h3>{price}</h3>
-              <button className='delete-btn'>DELETE </button>
+              <button onClick={() => deleteProduct(id)} className="delete-btn">
+                DELETE
+              </button>
             </div>
           );
         })}
