@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Cart({ productsInCart, deleteProduct }) {
+function Cart({ productsInCart, deleteProduct, totalCost }) {
   return (
     <div className="cart-container">
       <h1>MY SHOPPING CART</h1>
       <div className="cart-wrapper">
         {productsInCart.map((item) => {
-          const { title, price, image, id } = item;
+          const { title, price, image, id, quantity } = item;
           return (
             <div key={id} className="cart-product-card">
               <img src={image} alt={title} />
@@ -15,10 +15,12 @@ function Cart({ productsInCart, deleteProduct }) {
               <button onClick={() => deleteProduct(id)} className="delete-btn">
                 DELETE
               </button>
+              <h3>Quantity: {quantity}</h3>
             </div>
           );
         })}
       </div>
+      <h2>Total: {totalCost} </h2>
     </div>
   );
 }

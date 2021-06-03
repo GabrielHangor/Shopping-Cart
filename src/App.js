@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 function App() {
   const [products, setProducts] = useState();
   const [productsInCart, setProductsInCart] = useState([]);
+  const [totalCost, setTotalCost] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,11 +25,17 @@ function App() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    setTotalCost(
+      productsInCart.reduce((a, b) => {
+        return a + b.price * b.quantity;
+      }, 0)
+    );
+  }, [productsInCart]);
+
   const addProduct = (id) => {
-    // Получить выбранный элемент
     const newProduct = products.filter((product) => product.id === id);
 
-    // Если корзина пустая, добавить элемент в корзину
     if (productsInCart.length === 0) {
       setProductsInCart([newProduct[0]]);
     } else {
@@ -38,13 +45,10 @@ function App() {
     }
   };
 
-  // Если корзина не пустая, то :
-  // 1. Проверить, есть ли уже такой элемент в корзине
   const isProductInCart = (id) => {
     return productsInCart.some((product) => product.id === id);
   };
 
-  // 2. Если есть, то найти этот элемент в корзине и обновить его количество, а не добавлять дубликат в корзину
   const incrementQuantity = (id) => {
     setProductsInCart(
       productsInCart.map((product) =>
@@ -54,7 +58,7 @@ function App() {
       )
     );
   };
-  // 3. Если нет, добавить новый элемент в корзину
+
   const addNewProductToCart = (product) => {
     setProductsInCart([...productsInCart, ...product]);
   };
@@ -83,6 +87,7 @@ function App() {
             exact
             render={() => (
               <Cart
+                totalCost={totalCost}
                 productsInCart={productsInCart}
                 deleteProduct={deleteProduct}
               />
