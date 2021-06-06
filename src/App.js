@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Catalog from './components/Catalog';
 import Cart from './components/Cart';
-// import uniqid from 'uniqid';
+import ProductDetails from './components/ProductDetails';
 
 function App() {
   const [products, setProducts] = useState();
@@ -41,7 +41,7 @@ function App() {
     } else {
       isProductInCart(id)
         ? incrementQuantity(id)
-        : addNewProductToCart(newProduct);
+        : addNewProductInCart(newProduct);
     }
   };
 
@@ -59,7 +59,7 @@ function App() {
     );
   };
 
-  const addNewProductToCart = (product) => {
+  const addNewProductInCart = (product) => {
     setProductsInCart([...productsInCart, ...product]);
   };
 
@@ -93,6 +93,7 @@ function App() {
               />
             )}
           />
+          <Route path="/catalog/:title" component={ProductDetails} />
         </Switch>
       </div>
     </BrowserRouter>
