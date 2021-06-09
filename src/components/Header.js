@@ -10,7 +10,7 @@ function Header({ ammountOfProducts }) {
         <NavLink to="/catalog">Catalog</NavLink>
         <NavLink to="/cart">
           Cart
-          {ammountOfProducts > 0 ? `: ${ammountOfProducts}` : null}
+          {ammountOfProducts > 0 ? `: ${ammountOfProducts}` : ' is empty'}
         </NavLink>
       </ul>
     </nav>

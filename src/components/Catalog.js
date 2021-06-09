@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 
-function Catalog({ products, addProduct }) {
+function Catalog({ products }) {
   const [newProductsArr, setNewProductsArr] = useState();
 
   useEffect(() => {
@@ -34,13 +34,7 @@ function Catalog({ products, addProduct }) {
       <div className="products-container">
         {newProductsArr &&
           newProductsArr.map((product) => {
-            return (
-              <ProductCard
-                key={product.id}
-                product={product}
-                addProduct={addProduct}
-              />
-            );
+            return <ProductCard key={product.id} product={product} />;
           })}
       </div>
     </div>

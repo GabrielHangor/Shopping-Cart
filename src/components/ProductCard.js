@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function ProductCard({ product, addProduct }) {
-  const { id, image, price, title } = product;
+function ProductCard({ product }) {
+  const { image, price, title } = product;
   return (
     <div className="product-card">
       <Link
@@ -17,9 +17,6 @@ function ProductCard({ product, addProduct }) {
       </Link>
       <h4>{title}</h4>
       <h4>${price}</h4>
-      <button onClick={() => addProduct(id)} className="add-btn">
-        Add To Cart
-      </button>
     </div>
   );
 }

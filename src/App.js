@@ -10,6 +10,7 @@ function App() {
   const [products, setProducts] = useState();
   const [productsInCart, setProductsInCart] = useState([]);
   const [totalCost, setTotalCost] = useState();
+  const [totalQuantity, setTotalQuantity] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,8 +28,18 @@ function App() {
 
   useEffect(() => {
     setTotalCost(
+      productsInCart
+        .reduce((a, b) => {
+          return a + b.price * b.quantity;
+        }, 0)
+        .toFixed(2)
+    );
+  }, [productsInCart]);
+
+  useEffect(() => {
+    setTotalQuantity(
       productsInCart.reduce((a, b) => {
-        return a + b.price * b.quantity;
+        return a + b.quantity;
       }, 0)
     );
   }, [productsInCart]);
@@ -59,6 +70,30 @@ function App() {
     );
   };
 
+  const decrementQuantity = (id) => {
+    setProductsInCart(
+      productsInCart.map((product) =>
+        product.id === id
+          ? {
+              ...product,
+              quantity: product.quantity > 1 ? product.quantity - 1 : 1,
+            }
+          : product
+      )
+    );
+  };
+
+  const setQuantity = (event, id) => {
+    const value = parseInt(event.target.value);
+    setProductsInCart(
+      productsInCart.map((product) =>
+        product.id === id
+          ? { ...product, quantity: value > 1 ? value : 1 }
+          : product
+      )
+    );
+  };
+
   const addNewProductInCart = (product) => {
     setProductsInCart([...productsInCart, ...product]);
   };
@@ -70,16 +105,14 @@ function App() {
   return (
     <BrowserRouter>
       <div className="main-container">
-        <Header ammountOfProducts={productsInCart.length} />
+        <Header ammountOfProducts={totalQuantity} />
         <Switch>
           <Route path="/" exact component={Home} />
           {products && (
             <Route
               path="/catalog"
               exact
-              render={() => (
-                <Catalog products={products} addProduct={addProduct} />
-              )}
+              render={() => <Catalog products={products} />}
             />
           )}
           <Route
@@ -87,13 +120,19 @@ function App() {
             exact
             render={() => (
               <Cart
+                setQuantity={setQuantity}
+                incrementQuantity={incrementQuantity}
+                decrementQuantity={decrementQuantity}
                 totalCost={totalCost}
                 productsInCart={productsInCart}
                 deleteProduct={deleteProduct}
               />
             )}
           />
-          <Route path="/catalog/:title" component={ProductDetails} />
+          <Route
+            path="/catalog/:title"
+            render={() => <ProductDetails addProduct={addProduct} />}
+          />
         </Switch>
       </div>
     </BrowserRouter>
