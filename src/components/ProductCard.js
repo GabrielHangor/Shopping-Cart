@@ -4,20 +4,23 @@ import { Link } from 'react-router-dom';
 function ProductCard({ product }) {
   const { image, price, title } = product;
   return (
-    <div className="product-card">
-      <Link
-        to={{
-          pathname: `/catalog/${title}`,
-          state: product,
-        }}
-      >
+    <Link
+      to={{
+        pathname: `/catalog/${title}`,
+        state: product,
+      }}
+    >
+      <div className="product-card">
         <div className="image-wrapper">
           <img src={image} alt={title} />
         </div>
-      </Link>
-      <h4>{title}</h4>
-      <h4>${price}</h4>
-    </div>
+
+        <div className="product-card-text-content">
+          <h4>{title}</h4>
+          <h3>${price}</h3>
+        </div>
+      </div>
+    </Link>
   );
 }
 
