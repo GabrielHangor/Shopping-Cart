@@ -9,7 +9,7 @@ function Header({ ammountOfProducts }) {
       <ul className="nav-links">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/catalog">Catalog</NavLink>
-        <NavLink to="/cart">
+        <NavLink className='cart-icon-wrapper' to="/cart">
           <img className="cart-icon" src={cartIcon} alt="" />
           <span className="cart-icon-circle">
             {ammountOfProducts > 0 ? `${ammountOfProducts}` : '0'}

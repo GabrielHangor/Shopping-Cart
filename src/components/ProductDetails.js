@@ -15,7 +15,7 @@ function ProductDetails({ addProduct }) {
           <h2 style={{ textAlign: 'center' }}>{description}</h2>
           <h3>${price}</h3>
           <button onClick={() => addProduct(id)} className="add-btn">
-            ADD TO CART
+            Add To Cart
           </button>
         </div>
       </div>
