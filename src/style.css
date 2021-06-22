@@ -223,11 +223,17 @@ nav > h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 500px;
+  width: 380px;
+  height: 158px;
   row-gap: 10px;
   padding: 20px;
+  margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0.1rem 0.2em 0.5rem 0.1rem rgb(175 175 175 / 65%);
+}
+
+.totalcost-card > h2 {
+  font-weight: 300;
 }
 
 .totalcost-card > h1 {

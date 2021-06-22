@@ -102,6 +102,10 @@ function App() {
     setProductsInCart(productsInCart.filter((product) => product.id !== id));
   };
 
+  const clearCart = () => {
+    setProductsInCart([]);
+  };
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="main-container">
@@ -120,6 +124,7 @@ function App() {
             exact
             render={() => (
               <Cart
+                clearCart={clearCart}
                 setQuantity={setQuantity}
                 incrementQuantity={incrementQuantity}
                 decrementQuantity={decrementQuantity}
