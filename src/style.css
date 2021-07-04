@@ -472,6 +472,39 @@ nav>h2 {
   .home-text>h2 {
     font-size: 40px;
   }
+  .product-details-card-wrapper {
+    width: 80%;
+  }
+  .product-details-image-wrapper {
+    width: 336px;
+    height: 416px;
+  }
+  .product-details-image-wrapper>img {
+    max-width: 320px;
+    max-height: 400px;
+  }
+  .details-info-wrapper>h2 {
+    font-size: 1.1rem;
+  }
+  .details-info-wrapper>h3 {
+    font-size: 1.8rem;
+  }
+  .details-info-wrapper>h1 {
+    font-size: 1.5rem;
+  }
+  .add-btn {
+    font-size: 1.5rem;
+  }
+  .cart-header {
+    width: 90%;
+  }
+  .cart-wrapper {
+    width: 90%;
+    grid-gap: 1.5rem;
+  }
+  .product-card-wrapper {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -538,5 +571,84 @@ nav>h2 {
   .product-card {
     width: 220px;
     height: 310px;
+  }
+  .product-details-card-wrapper {
+    width: 95%;
+    flex-direction: column;
+    height: 90vh;
+  }
+  .product-details-image-wrapper {
+    width: 264.6px;
+    height: 327.6px;
+  }
+  .product-details-image-wrapper>img {
+    max-width: 252px;
+    max-height: 315px;
+  }
+  .details-info-wrapper>h2 {
+    font-size: 1rem;
+  }
+  .details-info-wrapper>h3 {
+    font-size: 1.5rem;
+  }
+  .details-info-wrapper>h1 {
+    font-size: 1.3rem;
+  }
+  .add-btn {
+    font-size: 1.2rem;
+    padding: 7px 30px;
+  }
+  .details-info-wrapper {
+    row-gap: 1rem;
+  }
+  .product-card-wrapper {
+    width: 99%;
+    height: 150px;
+  }
+  .cart-wrapper {
+    width: 99%;
+    margin: 0;
+    grid-template-rows: repeat(auto-fit, minmax(150px, 150px));
+  }
+  .image-wrapper-product-card {
+    width: 80px;
+    height: 120px;
+  }
+  .image-wrapper-product-card>img {
+    width: 80px;
+    max-height: 112px;
+  }
+  .quantity-form>input {
+    width: 40px;
+    height: 30px;
+    line-height: 42px;
+    font-size: 1.2rem;
+  }
+  .quantity-form {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-card-wrapper>h4 {
+    width: 130px;
+    font-size: 0.8rem;
+  }
+  .product-card-wrapper>h3 {
+    font-size: 1rem;
+  }
+  .delete-btn {
+    width: 20px;
+  }
+  .cart-header {
+    display: none;
+  }
+  .totalcost-card {
+    width: 90%;
+    height: 200px;
+  }
+  .totalcost-card>button {
+    font-size: 1.2rem;
+  }
+  .checkout-message {
+    font-size: 2rem;
   }
 }
