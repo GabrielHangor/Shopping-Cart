@@ -602,13 +602,17 @@ nav>h2 {
     row-gap: 1rem;
   }
   .product-card-wrapper {
-    width: 99%;
-    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    width: 90%;
+    height: 350px;
   }
   .cart-wrapper {
-    width: 99%;
+    width: 90%;
     margin: 0;
-    grid-template-rows: repeat(auto-fit, minmax(150px, 150px));
+    grid-template-rows: repeat(auto-fit, minmax(350px, 350px));
   }
   .image-wrapper-product-card {
     width: 80px;
@@ -625,12 +629,11 @@ nav>h2 {
     font-size: 1.2rem;
   }
   .quantity-form {
-    flex-direction: column;
     align-items: center;
   }
   .product-card-wrapper>h4 {
-    width: 130px;
-    font-size: 0.8rem;
+    max-width: 90%;
+    font-size: 1rem;
   }
   .product-card-wrapper>h3 {
     font-size: 1rem;
