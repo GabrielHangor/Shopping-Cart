@@ -11,3 +11,4 @@ Core functionality:
 * User is able to switch between 3 pages: Main Page, Catalog with products and the cart itself.
 * Add and remove products from the cart.
 * Filter products by caategories.
+* Mobile responsive.
